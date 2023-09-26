@@ -1,0 +1,40 @@
+{% extends 'muscovite/base.html' %}
+
+{% block content%}
+
+<div class="container text center">
+  <div class="row">
+    <div class="col-8">
+
+
+  <h1>Home of the {{ user.username }} Meeps</h1>
+
+    {% for meep in meeps %}
+      <div class="alert alert-info" role="alert">
+        {{ meep.body }}<br/><br/>
+        <small class="text-muted">
+        {{ meep.created_at }} By: @{{ meep.user.username }}
+        </small>
+      </div>
+    {% endfor %}
+
+    </div>
+
+<div class="col-4">
+  <br/>
+{% if form %}
+
+
+  <form method=POST>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">
+      Submit
+      </button>
+    </form>
+
+{% endif %}
+</div>
+  
+
+{% endblock %}
